@@ -6,9 +6,10 @@
 // requirements npm installed in your machine
 // mongo db 
 // mongo compass
+// mongoose 
 // npm install nodemon 
 
-const mongodb = require('mongodb');
+const mongoose = require('mongoose');
 
 // if local host is not working use 0.0.0.0 instead of localhost 
 
@@ -16,7 +17,9 @@ const mongodb = require('mongodb');
 
 // mongodb://localhost:27017/mynewCollection 
 
-var url = ( "mongodb://localhost:add your port number here// collection name (database name) ");
+mongoose.connect('mongodb://localhost:27017/sample');
+//or 
+//mongoose.connect("mongodb://localhost:add your port number here// collection name (database name) ");
 
 then (() =>{
     console.log("Successfully connected to MongoDB");
@@ -27,7 +30,8 @@ console.log("Failed to connect to MongoDB");
 });
 
 // this is a function created in html form 
-const Formdata = new mongodb.Schema({
+// it wll create schema in mongodb in json format
+const Formdata = new mongoose.Schema({
     name: {
         type:String,
         required:true,
@@ -58,11 +62,11 @@ const Formdata = new mongodb.Schema({
 
 // make sure above defined collection name along with localhost is same as here in model
 /// add schema name to parameter element
-const collection = new mongodb.model('mynewCollection',Formdata);
+const collection = new mongoose.model('sample',Formdata);
 
 demoData ={
 
-    name:'MongoDB',
+    name:'olewintechsolutions',
 }
 
 collection.insertMany([demoData]);
